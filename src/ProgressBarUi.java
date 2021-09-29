@@ -25,7 +25,7 @@ public class ProgressBarUi extends BasicProgressBarUI {
 
     public ProgressBarUi() {
         try {
-            bimage = ImageIO.read(this.getClass().getResource("/bricks.png"));
+            bimage = ImageIO.read(this.getClass().getResource("/bar.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -110,7 +110,9 @@ public class ProgressBarUi extends BasicProgressBarUI {
             g.fill(area);
         }
 
-        Icons.SHELL.paintIcon(progressBar, g, offset2 - JBUI.scale(3), -JBUI.scale(-2));
+        Icons.SHELL.paintIcon(progressBar, g, offset2 - JBUI.scale(3), -JBUI.scale(12));
+
+//        System.out.printf("IndeterminatePercentage: %s\n", progressBar.getPercentComplete());
 
         g.draw(new RoundRectangle2D.Float(1f, 1f, w - 2f - 1f, h - 2f - 1f, R, R));
         g.translate(0, -(c.getHeight() - h) / 2);
@@ -170,7 +172,7 @@ public class ProgressBarUi extends BasicProgressBarUI {
 
         g2.fill(new RoundRectangle2D.Float(2f * off, 2f * off, amountFull - JBUI.scale(5f), h - JBUI.scale(5f), JBUI.scale(7f), JBUI.scale(7f)));
 
-        Icons.MARIO.paintIcon(progressBar, g2, amountFull - JBUI.scale(5), -JBUI.scale(1));
+        Icons.MARIO.paintIcon(progressBar, g2, amountFull - JBUI.scale(16), -JBUI.scale(12));
         g2.translate(0, -(c.getHeight() - h) / 2);
 
         if (progressBar.isStringPainted()) {
