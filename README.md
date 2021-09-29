@@ -2,9 +2,7 @@
 
 A Sonic progress bar for IntelliJ IDEA and other JetBrains IDEs.
 
-This is the Sonic progress bar for [JetBrains IntelliJ IDEA](https://www.jetbrains.com/idea/) based on the Nyan Progress Bar by Dmitry Batkovitch. It displays Sonic running in the basic and indefinite progress bars.
-
-It currently is a WIP.
+This is the Sonic progress bar for [JetBrains IntelliJ IDEA](https://www.jetbrains.com/idea/) based on the Nyan Progress Bar by Dmitry Batkovitch. It displays Sonic running in the determinate progress bar and skids in the indefinite progress bar.
 
 ## Acknowledgements
 
