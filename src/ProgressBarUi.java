@@ -22,7 +22,7 @@ import java.io.IOException;
 
 public class ProgressBarUi extends BasicProgressBarUI {
     BufferedImage bimage = null;
-
+    private double previousProgressBarPercentage = 0.0d;
     public ProgressBarUi() {
         try {
             bimage = ImageIO.read(this.getClass().getResource("/bar.png"));
@@ -110,9 +110,13 @@ public class ProgressBarUi extends BasicProgressBarUI {
             g.fill(area);
         }
 
-        Icons.SHELL.paintIcon(progressBar, g, offset2 - JBUI.scale(3), -JBUI.scale(12));
+        if (velocity >= 0) {
+            Icons.SKID.paintIcon(progressBar, g, offset2 - JBUI.scale(3), -JBUI.scale(11));
+        } else {
+            Icons.SKID_MIRROR.paintIcon(progressBar, g, offset2 - JBUI.scale(3), -JBUI.scale(11));
+        }
 
-//        System.out.printf("IndeterminatePercentage: %s\n", progressBar.getPercentComplete());
+        previousProgressBarPercentage = progressBar.getPercentComplete();
 
         g.draw(new RoundRectangle2D.Float(1f, 1f, w - 2f - 1f, h - 2f - 1f, R, R));
         g.translate(0, -(c.getHeight() - h) / 2);
@@ -172,7 +176,7 @@ public class ProgressBarUi extends BasicProgressBarUI {
 
         g2.fill(new RoundRectangle2D.Float(2f * off, 2f * off, amountFull - JBUI.scale(5f), h - JBUI.scale(5f), JBUI.scale(7f), JBUI.scale(7f)));
 
-        Icons.MARIO.paintIcon(progressBar, g2, amountFull - JBUI.scale(16), -JBUI.scale(12));
+        Icons.DASH.paintIcon(progressBar, g2, amountFull - JBUI.scale(16), -JBUI.scale(12));
         g2.translate(0, -(c.getHeight() - h) / 2);
 
         if (progressBar.isStringPainted()) {
