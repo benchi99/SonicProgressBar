@@ -1,16 +1,16 @@
 <idea-plugin>
   <id>com.rubenbermejoromero.sonicprogressbar</id>
-  <name>Sonic Progress Bar</name>
+  <name>Sonic Mania Progress Bar</name>
   <version>1.0</version>
   <idea-version since-build="193"/>
   <vendor email="mejoruben@gmail.com">benchi99</vendor>
 
   <description><![CDATA[
-      This is the Sonic Progress Bar for IJ based IDEs based on the Nyan Progress Bar by Dmitry Batkovitch.
+      This is the Sonic Mania Progress Bar for IJ based IDEs based on the Mario Progress bar by KikiManjaro, of which is based on the Nyan Progress Bar by Dmitry Batkovitch.
     ]]></description>
 
   <change-notes><![CDATA[
-      <em>1.0 Creation of the Sonic Progress Bar Project (1-1 with 1.6 of Mario Progress Bar)</em><br>
+      <em>1.0 Creation of the Sonic Mania Progress Bar Project (1-1 with 1.6 of Mario Progress Bar)</em><br>
     ]]>
   </change-notes>
 
