@@ -4,12 +4,13 @@ A Sonic progress bar for IntelliJ IDEA and other JetBrains IDEs.
 
 This is the Sonic progress bar for [JetBrains IntelliJ IDEA](https://www.jetbrains.com/idea/) based on the Nyan Progress Bar by Dmitry Batkovitch. It displays Sonic running in the determinate progress bar and skids in the indefinite progress bar.
 
+[You can check out the plugin and install it over at JetBrains' Plugin Marketplace.](https://plugins.jetbrains.com/plugin/17705-sonic-mania-progress-bar)
+
 ## Acknowledgements
 
 ### Sprites
 * Sprites belong to Sonic Mania, obtained at [spriters-resource](https://www.spriters-resource.com/), ripped by AsuharaMoon.
 * Sonic Mania is a copyrighted work from SEGA, developed by [Christian Whitehead](http://christianwhitehead.com.au), [Headcannon](https://www.headcannon.com/), [Pagodawest Games](https://pagodawestgames.com/), Paul Veer Kieran Gates and Lucas "Midio" Carvalho.
-
 
 ### Code
 * This is a straight-up fork from [Mario Progress Bar](https://github.com/KikiManjaro/MarioProgressBar).
