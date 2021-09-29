@@ -9,7 +9,9 @@ It currently is a WIP.
 ## Acknowledgements
 
 ### Sprites
-TBD
+* Sprites belong to Sonic Mania, obtained at [spriters-resource](https://www.spriters-resource.com/), ripped by AsuharaMoon.
+* Sonic Mania is a copyrighted work from SEGA, developed by [Christian Whitehead](http://christianwhitehead.com.au), [Headcannon](https://www.headcannon.com/), [Pagodawest Games](https://pagodawestgames.com/), Paul Veer Kieran Gates and Lucas "Midio" Carvalho.
+
 
 ### Code
 * This is a straight-up fork from [Mario Progress Bar](https://github.com/KikiManjaro/MarioProgressBar).
