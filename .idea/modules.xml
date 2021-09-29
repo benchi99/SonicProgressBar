@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MarioProgressBar.iml" filepath="$PROJECT_DIR$/MarioProgressBar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SonicProgressBar.iml" filepath="$PROJECT_DIR$/SonicProgressBar.iml" />
     </modules>
   </component>
 </project>
