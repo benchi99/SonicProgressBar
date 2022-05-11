@@ -1,3 +1,5 @@
+package ui;
+
 import com.intellij.openapi.ui.GraphicsConfig;
 import com.intellij.ui.Gray;
 import com.intellij.ui.JBColor;
@@ -5,6 +7,7 @@ import com.intellij.util.ui.GraphicsUtil;
 import com.intellij.util.ui.JBUI;
 import com.intellij.ui.scale.JBUIScale;
 import com.intellij.util.ui.UIUtil;
+import data.BarCharacter;
 
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 
@@ -118,9 +121,11 @@ public class ProgressBarUi extends BasicProgressBarUI {
                 }
 
                 if (velocity >= 0) {
-                    Icons.SKID.paintIcon(progressBar, graphics2D, offset2 - JBUIScale.scale(3), -JBUIScale.scale(11));
+                    var skidIconData = BarCharacter.SONIC.getSkid();
+                    skidIconData.getIcon().paintIcon(progressBar, graphics2D, offset2 - JBUIScale.scale(skidIconData.getxOffset()), -JBUIScale.scale(skidIconData.getyOffset()));
                 } else {
-                    Icons.SKID_MIRROR.paintIcon(progressBar, graphics2D, offset2 - JBUIScale.scale(3), -JBUIScale.scale(11));
+                    var mirroredSkidIconData = BarCharacter.SONIC.getSkidMirror();
+                    mirroredSkidIconData.getIcon().paintIcon(progressBar, graphics2D, offset2 - JBUIScale.scale(mirroredSkidIconData.getxOffset()), -JBUIScale.scale(mirroredSkidIconData.getyOffset()));
                 }
 
                 graphics2D.draw(new RoundRectangle2D.Float(1f, 1f, width - 2f - 1f, height - 2f - 1f, RADIUS, RADIUS));

@@ -1,4 +1,4 @@
-import com.intellij.openapi.util.IconLoader;
+package ui;
 
 import javax.swing.*;
 

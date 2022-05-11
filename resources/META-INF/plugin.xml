@@ -1,8 +1,8 @@
 <idea-plugin>
   <id>com.rubenbermejoromero.sonicprogressbar</id>
   <name>Sonic Mania Progress Bar</name>
-  <version>1.0</version>
-  <idea-version since-build="193"/>
+  <version>1.1</version>
+  <idea-version since-build="213"/>
   <vendor email="mejoruben@gmail.com">benchi99</vendor>
 
   <description><![CDATA[
@@ -11,6 +11,7 @@
 
   <change-notes><![CDATA[
       <em>1.0 Creation of the Sonic Mania Progress Bar Project (1-1 with 1.6 of Mario Progress Bar)</em><br>
+      <em>1.1 Merge from upstream. Tweak offsets for undetermined bar so Sonic doesn't go off screen.</em><br>
     ]]>
   </change-notes>
 
@@ -20,6 +21,12 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
+    <applicationConfigurable
+      parentId="other"
+      instance="settings.AppSettingsConfigurable"
+      id="settings.AppSettingsConfigurable"
+      displayName="Sonic Mania Progress Bar" />
+    <applicationService serviceImplementation="settings.AppSettingsState" />
   </extensions>
 
   <actions>
@@ -27,7 +34,7 @@
   </actions>
 
   <applicationListeners>
-    <listener class="ProgressBarLafManagerListener"
+    <listener class="ui.ProgressBarLafManagerListener"
               topic="com.intellij.ide.ui.LafManagerListener" />
   </applicationListeners>
 </idea-plugin>
