@@ -3,17 +3,16 @@ package ui;
 import com.intellij.openapi.ui.GraphicsConfig;
 import com.intellij.ui.Gray;
 import com.intellij.ui.JBColor;
+import com.intellij.ui.scale.JBUIScale;
 import com.intellij.util.ui.GraphicsUtil;
 import com.intellij.util.ui.JBUI;
-import com.intellij.ui.scale.JBUIScale;
 import com.intellij.util.ui.UIUtil;
-import data.BarCharacter;
-
-import javax.swing.plaf.basic.BasicGraphicsUtils;
+import settings.AppSettingsState;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicGraphicsUtils;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
@@ -120,11 +119,13 @@ public class ProgressBarUi extends BasicProgressBarUI {
                     graphics2D.fill(area);
                 }
 
+                var currentCharacter = AppSettingsState.getInstance().character;
+
                 if (velocity >= 0) {
-                    var skidIconData = BarCharacter.SONIC.getSkid();
+                    var skidIconData = currentCharacter.getSkid();
                     skidIconData.getIcon().paintIcon(progressBar, graphics2D, offset2 - JBUIScale.scale(skidIconData.getxOffset()), -JBUIScale.scale(skidIconData.getyOffset()));
                 } else {
-                    var mirroredSkidIconData = BarCharacter.SONIC.getSkidMirror();
+                    var mirroredSkidIconData = currentCharacter.getSkidMirror();
                     mirroredSkidIconData.getIcon().paintIcon(progressBar, graphics2D, offset2 - JBUIScale.scale(mirroredSkidIconData.getxOffset()), -JBUIScale.scale(mirroredSkidIconData.getyOffset()));
                 }
 
@@ -189,7 +190,9 @@ public class ProgressBarUi extends BasicProgressBarUI {
 
                     graphics2D.fill(new RoundRectangle2D.Float(2f * OFFSET, 2f * OFFSET, amountFull - JBUIScale.scale(5f), height - JBUIScale.scale(5f), JBUIScale.scale(7f), JBUIScale.scale(7f)));
 
-                    Icons.DASH.paintIcon(progressBar, graphics2D, amountFull - JBUIScale.scale(16), -JBUIScale.scale(12));
+                    var currentCharacter = AppSettingsState.getInstance().character;
+                    var dashIconData = currentCharacter.getDash();
+                    dashIconData.getIcon().paintIcon(progressBar, graphics2D, amountFull - JBUIScale.scale(dashIconData.getxOffset()), -JBUIScale.scale(dashIconData.getyOffset()));
                     graphics2D.translate(0, -(jComponent.getHeight() - height) / 2);
 
                     if (progressBar.isStringPainted()) {
