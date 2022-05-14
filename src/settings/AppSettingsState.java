@@ -16,6 +16,7 @@ import data.BarCharacter;
 public class AppSettingsState implements PersistentStateComponent<AppSettingsState> {
 
     public BarCharacter character = BarCharacter.SONIC;
+    public boolean andKnuckles = false;
 
     public static AppSettingsState getInstance() {
         return ApplicationManager.getApplication().getService(AppSettingsState.class);

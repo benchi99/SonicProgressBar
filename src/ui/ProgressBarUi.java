@@ -7,6 +7,7 @@ import com.intellij.ui.scale.JBUIScale;
 import com.intellij.util.ui.GraphicsUtil;
 import com.intellij.util.ui.JBUI;
 import com.intellij.util.ui.UIUtil;
+import data.BarCharacter;
 import settings.AppSettingsState;
 
 import javax.imageio.ImageIO;
@@ -119,14 +120,16 @@ public class ProgressBarUi extends BasicProgressBarUI {
                     graphics2D.fill(area);
                 }
 
-                var currentCharacter = AppSettingsState.getInstance().character;
+                AppSettingsState settings = AppSettingsState.getInstance();
 
-                if (velocity >= 0) {
-                    var skidIconData = currentCharacter.getSkid();
-                    skidIconData.getIcon().paintIcon(progressBar, graphics2D, offset2 - JBUIScale.scale(skidIconData.getxOffset()), -JBUIScale.scale(skidIconData.getyOffset()));
-                } else {
-                    var mirroredSkidIconData = currentCharacter.getSkidMirror();
-                    mirroredSkidIconData.getIcon().paintIcon(progressBar, graphics2D, offset2 - JBUIScale.scale(mirroredSkidIconData.getxOffset()), -JBUIScale.scale(mirroredSkidIconData.getyOffset()));
+                var currentCharacter = settings.character;
+                var iconDataToDraw = velocity >= 0 ? currentCharacter.getSkid() : currentCharacter.getSkidMirror();
+                iconDataToDraw.getIcon().paintIcon(progressBar, graphics2D, offset2 - JBUIScale.scale(iconDataToDraw.getxOffset()), -JBUIScale.scale(iconDataToDraw.getyOffset()));
+
+                if (settings.andKnuckles) {
+                    var knux = BarCharacter.KNUX;
+                    var knuxIconData = velocity >= 0 ? knux.getSkid() : knux.getSkidMirror();
+                    knuxIconData.getIcon().paintIcon(progressBar, graphics2D, offset2 - JBUIScale.scale((knuxIconData.getxOffset() * 2) + 9), -JBUIScale.scale(knuxIconData.getyOffset()));
                 }
 
                 graphics2D.draw(new RoundRectangle2D.Float(1f, 1f, width - 2f - 1f, height - 2f - 1f, RADIUS, RADIUS));
@@ -190,9 +193,14 @@ public class ProgressBarUi extends BasicProgressBarUI {
 
                     graphics2D.fill(new RoundRectangle2D.Float(2f * OFFSET, 2f * OFFSET, amountFull - JBUIScale.scale(5f), height - JBUIScale.scale(5f), JBUIScale.scale(7f), JBUIScale.scale(7f)));
 
-                    var currentCharacter = AppSettingsState.getInstance().character;
-                    var dashIconData = currentCharacter.getDash();
+                    AppSettingsState settings = AppSettingsState.getInstance();
+
+                    var dashIconData = settings.character.getDash();
                     dashIconData.getIcon().paintIcon(progressBar, graphics2D, amountFull - JBUIScale.scale(dashIconData.getxOffset()), -JBUIScale.scale(dashIconData.getyOffset()));
+                    if (settings.andKnuckles) {
+                        var knuxDashIconData = BarCharacter.KNUX.getDash();
+                        knuxDashIconData.getIcon().paintIcon(progressBar, graphics2D, amountFull - JBUIScale.scale((knuxDashIconData.getxOffset() * 2) + 9), -JBUIScale.scale(knuxDashIconData.getyOffset()));
+                    }
                     graphics2D.translate(0, -(jComponent.getHeight() - height) / 2);
 
                     if (progressBar.isStringPainted()) {
