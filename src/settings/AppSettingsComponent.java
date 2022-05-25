@@ -5,6 +5,10 @@ import com.intellij.ui.components.JBRadioButton;
 import com.intellij.util.ui.FormBuilder;
 
 import javax.swing.*;
+import java.util.Optional;
+import java.util.Spliterator;
+import java.util.Spliterators;
+import java.util.stream.StreamSupport;
 
 public class AppSettingsComponent {
 
@@ -13,10 +17,10 @@ public class AppSettingsComponent {
     private final JBRadioButton tailsRadio = new JBRadioButton("Tails");
     private final JBRadioButton knuxRadio = new JBRadioButton("Knuckles");
 
+    private final ButtonGroup buttonGroup = new ButtonGroup();
     private final JBCheckBox unlikeSonicIDontChuckle = new JBCheckBox("& Knuckles");
 
     public AppSettingsComponent() {
-        ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(sonicRadio);
         buttonGroup.add(tailsRadio);
         buttonGroup.add(knuxRadio);
@@ -42,24 +46,12 @@ public class AppSettingsComponent {
         sonicRadio.setSelected(selected);
     }
 
-    public boolean getSonicRadio() {
-        return sonicRadio.isSelected();
-    }
-
     public void setTailsRadio(boolean selected) {
         tailsRadio.setSelected(selected);
     }
 
-    public boolean getTailsRadio() {
-        return tailsRadio.isSelected();
-    }
-
     public void setKnuxRadio(boolean selected) {
         knuxRadio.setSelected(selected);
-    }
-
-    public boolean getKnuxRadio() {
-        return knuxRadio.isSelected();
     }
 
     public void setUnlikeSonicIDontChuckle(boolean selected) {
@@ -68,5 +60,14 @@ public class AppSettingsComponent {
 
     public boolean getUnlikeSonicIDontChuckle() {
         return unlikeSonicIDontChuckle.isSelected();
+    }
+
+    public Optional<AbstractButton> getCurrentSelection() {
+        Spliterator<AbstractButton> radioButtons
+                = Spliterators.spliteratorUnknownSize(buttonGroup.getElements().asIterator(), Spliterator.ORDERED);
+
+        return StreamSupport.stream(radioButtons, false)
+                .filter(AbstractButton::isSelected)
+                .findFirst();
     }
 }

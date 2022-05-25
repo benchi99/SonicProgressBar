@@ -34,24 +34,17 @@ public class AppSettingsConfigurable implements Configurable {
         AppSettingsState settings = AppSettingsState.getInstance();
         BarCharacter currentCharacter = settings.character;
 
-        // TODO: Rework this!!
-        return !isSonicSetInSettingsAndUi(currentCharacter)
-                || !isTailsSetInSettingsAndUi(currentCharacter)
-                || !isKnuxSetInSettingsAndUi(currentCharacter)
+        return !doRadioButtonsAndSettingsMatch(currentCharacter)
                 || !isAndKnucklesStateEqualInSettingsAndUi(settings.andKnuckles);
     }
 
     @Override
-    public void apply() throws ConfigurationException {
+    public void apply() {
         AppSettingsState settings = AppSettingsState.getInstance();
 
-        if (appSettingsComponent.getSonicRadio()) {
-            settings.character = BarCharacter.SONIC;
-        } else if (appSettingsComponent.getTailsRadio()) {
-            settings.character = BarCharacter.TAILS;
-        } else if (appSettingsComponent.getKnuxRadio()) {
-            settings.character = BarCharacter.KNUX;
-        }
+        appSettingsComponent.getCurrentSelection()
+                .ifPresent(radioButton ->
+                        settings.character = BarCharacter.valueOf(radioButton.getText().toUpperCase()));
 
         settings.andKnuckles = appSettingsComponent.getUnlikeSonicIDontChuckle();
     }
@@ -86,19 +79,10 @@ public class AppSettingsConfigurable implements Configurable {
         appSettingsComponent = null;
     }
 
-    private boolean isSonicSetInSettingsAndUi(BarCharacter currentCharacter) {
-        boolean sonicEnabled = appSettingsComponent.getSonicRadio();
-        return sonicEnabled && BarCharacter.SONIC.equals(currentCharacter);
-    }
-
-    private boolean isTailsSetInSettingsAndUi(BarCharacter currentCharacter) {
-        boolean tailsEnabled = appSettingsComponent.getTailsRadio();
-        return tailsEnabled && BarCharacter.TAILS.equals(currentCharacter);
-    }
-
-    private boolean isKnuxSetInSettingsAndUi(BarCharacter currentCharacter) {
-        boolean knuxEnabled = appSettingsComponent.getKnuxRadio();
-        return knuxEnabled && BarCharacter.KNUX.equals(currentCharacter);
+    private boolean doRadioButtonsAndSettingsMatch(BarCharacter currentCharacter) {
+        return appSettingsComponent.getCurrentSelection()
+                .map(radioButton -> radioButton.getText().equalsIgnoreCase(currentCharacter.name()))
+                .orElse(false);
     }
 
     private boolean isAndKnucklesStateEqualInSettingsAndUi(boolean andKnucklesSetting) {
